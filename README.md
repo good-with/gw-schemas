@@ -1,5 +1,5 @@
 # GW Schemas
-A collection of both json and yaml schemas used throughout Good With applications.
+A collection of both json and yaml schemas used throughout Good With development environments.
 
 ## Getting Started
 To use these schemas in your development environment, please reference each schema in your preferred IDE's settings.
