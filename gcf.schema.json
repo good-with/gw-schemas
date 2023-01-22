@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "definitions": {
+        "environment": {
+            "type": "object",
+            "required": ["function", "runtime", "entry_point"],
+            "properties": {
+                "function": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "runtime": {
+                    "type": "string"
+                },
+                "entry_point": {
+                    "type": "string"
+                },
+                "environment_variables": {
+                    "type": "object"
+                },
+                "max_instance_count": {
+                    "type": "integer"
+                },
+                "min_instance_count": {
+                    "type": "integer"
+                },
+                "available_memory": {
+                    "type": "string"
+                },
+                "timeout_seconds": {
+                    "type": "integer"
+                },
+                "max_instance_request_concurrency": {
+                    "type": "integer"
+                },
+                "available_cpu": {
+                    "type": "string"
+                },
+                "event_type": {
+                    "type": "string"
+                },
+                "pubsub_topic": {
+                    "type": "string"
+                },
+                "retry_policy": {
+                    "type": "string"
+                },
+                "ingress_settings": {
+                    "type": "string",
+                    "enum": ["ALLOW_ALL", "ALLOW_INTERNAL_ONLY", "ALLOW_INTERNAL_AND_GCLB"],
+                    "default": "ALLOW_ALL"
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "type": "object",
+            "properties": {
+                "default": {
+                    "$ref": "#/definitions/environment"
+                },
+                "production": {
+                    "$ref": "#/definitions/environment"
+                },
+                "stage": {
+                    "$ref": "#/definitions/environment"
+                },
+                "dev": {
+                    "$ref": "#/definitions/environment"
+                }
+            }
+        }
+
+    ]
+}
