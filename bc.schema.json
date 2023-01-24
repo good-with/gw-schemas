@@ -3,24 +3,27 @@
   "type": "object",
   "properties": {
     "title": {
-      "type": "string"
+        "type": "string"
     },
     "message": {
-      "type": "string"
+        "type": "string"
     },
     "type": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 2
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 2
     },
     "highPriority": {
-      "type": "boolean"
+        "type": "boolean"
     },
     "actionLabel": {
-      "type": "string"
+        "type": "string"
     },
     "actionCommand": {
-      "type": "string"
+        "type": "string"
+    },
+    "artworkUrl": {
+        "type": "string"
     }
   },
   "required": [
