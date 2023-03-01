@@ -97,7 +97,19 @@
                 "videoPlayer": {
                     "type": "object",
                     "description": "The video player object that consists of a path to the video file and optionally subtitles. Leave this non-empty to declare this module as a video.",
-                    "properties": {}
+                    "required": [
+                        "video"
+                    ],
+                    "properties": {
+                        "video": {
+                            "type": "string",
+                            "description": "The path to the video file on Good With's cloud storage service."
+                        },
+                        "subtitles": {
+                            "type": "array",
+                            "description": "A list of subtitle objects representing pairs of timestamps and subtitles.",
+                        }
+                    }
                 }
             }
         }
