@@ -14,6 +14,12 @@ Below is a step by step tutorial on how to add these schemas to your **VSCode** 
  "json.schemas": [
         {
             "fileMatch": [
+                "/*.finiq.yaml"
+            ],
+            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/finiq.schema.json"
+        },
+        {
+            "fileMatch": [
                 "/*.bc.json"
             ],
             "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/bc.schema.json"

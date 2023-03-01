@@ -1,0 +1,105 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "required": [
+        "name",
+        "version",
+        "title",
+        "description",
+        "completionTime",
+        "modules"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "ID of the lesson. Must be unique in the project."
+        },
+        "version": {
+            "type": "integer",
+            "description": "An integer starting from 1 to represent the version of this lesson."
+        },
+        "title": {
+            "type": "string",
+            "description": "A title that will appear when selecting or progressing through the lesson.",
+            "minLength": 8,
+            "maxLength": 32
+        },
+        "description": {
+            "type": "string",
+            "description": "A short description that briefly explains what is going to be taught, what the outcome is going to be, etc.",
+            "minLength": 8
+        },
+        "completionTime": {
+            "type": "integer",
+            "description": "Roughly, how many minutes a user is going to take to finish this lesson.",
+            "minimum": 0
+        },
+        "modules": {
+            "type": "array",
+            "description": "A list of modules - pages, that will make up the lesson.",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/definitions/module"
+            }
+        }
+    },
+    "definitions": {
+        "module": {
+            "type": "object",
+            "required": [
+                "module",
+                "title",
+                "mustValidate"
+            ],
+            "anyOf": [
+                {
+                    "required": [
+                        "questionnaire"
+                    ]
+                },
+                {
+                    "required": [
+                        "wordMatching"
+                    ]
+                },
+                {
+                    "required": [
+                        "videoPlayer"
+                    ]
+                }
+            ],
+            "properties": {
+                "module": {
+                    "type": "string",
+                    "description": "The ID of the module. Must be unique in the lesson.",
+                    "minLength": 2,
+                    "maxLength": 32
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the module that the user is going to see while progressing through the module."
+                },
+                "mustValidate": {
+                    "type": "boolean",
+                    "description": "Whether this module must be validated or not. If set to true, then the user won't be able to progress through the modules until they correctly submit the questionnaire or game.",
+                    "default": false
+                },
+                "questionnaire": {
+                    "type": "array",
+                    "description": "A list of items that will make up a questionnaire or information page. Leave this non-empty to declare this module as a questionnaire page.",
+                    "minItems": 1
+                },
+                "wordMatching": {
+                    "type": "array",
+                    "description": "A list of items that will make up a word matching game. Leave this non-empty to declare this module as a word matching game.",
+                    "minItems": 1
+                },
+                "videoPlayer": {
+                    "type": "object",
+                    "description": "The video player object that consists of a path to the video file and optionally subtitles. Leave this non-empty to declare this module as a video.",
+                    "properties": {}
+                }
+            }
+        }
+    }
+}
