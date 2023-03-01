@@ -87,12 +87,18 @@
                 "questionnaire": {
                     "type": "array",
                     "description": "A list of items that will make up a questionnaire or information page. Leave this non-empty to declare this module as a questionnaire page.",
-                    "minItems": 1
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/questionnaireItem"
+                    }
                 },
                 "wordMatching": {
                     "type": "array",
                     "description": "A list of items that will make up a word matching game. Leave this non-empty to declare this module as a word matching game.",
-                    "minItems": 1
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/wordMatchingItem"
+                    }
                 },
                 "videoPlayer": {
                     "type": "object",
@@ -108,8 +114,75 @@
                         "subtitles": {
                             "type": "array",
                             "description": "A list of subtitle objects representing pairs of timestamps and subtitles.",
+                            "items": {
+                                "type": "object",
+                                "description": "A subtitle object exposing a timestamp and the text shown in that moment. Eg. '0:05: this is a sub'"
+                            }
                         }
                     }
+                }
+            }
+        },
+        "questionnaireItem": {
+            "type": "object",
+            "required": [
+                "item"
+            ],
+            "properties": {
+                "item": {
+                    "type": "string"
+                },
+                "question": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array"
+                },
+                "slider": {
+                    "type": "array"
+                },
+                "answer": {},
+                "image": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "multiSelect": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
+        "wordMatchingItem": {
+            "type": "object",
+            "required": [
+                "item"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "text"
+                    ]
+                },
+                {
+                    "required": [
+                        "image"
+                    ]
+                }
+            ],
+            "properties": {
+                "item": {
+                    "type": "string"
+                },
+                "match": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
                 }
             }
         }
