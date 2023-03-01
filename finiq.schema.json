@@ -125,34 +125,106 @@
         },
         "questionnaireItem": {
             "type": "object",
-            "required": [
-                "item"
-            ],
             "properties": {
                 "item": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the item. Must be unique in the module.",
+                    "minLength": 2,
+                    "maxLength": 32
                 },
                 "question": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The question statement that the user will need to answer."
                 },
                 "options": {
-                    "type": "array"
+                    "type": "array",
+                    "description": "A list of options that the user can select from. To make this a multi select option list, set [multiSelect] to true."
                 },
                 "slider": {
-                    "type": "array"
+                    "type": "array",
+                    "description": "A list of options that the user can select from using a slider."
                 },
-                "answer": {},
+                "answer": {
+                    "description": "The correct answer of this question. Leave this null if this question does not have a correct answer."
+                },
+                "hint": {
+                    "type": "string",
+                    "description": "Correct explanation of this question. Leave this null if this question does not have an explanation."
+                },
                 "image": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to the image or gif that will be displayed. Can be combined with a [text] to create a polaroid-style image."
                 },
                 "text": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The text that will be displayed. Can be combined with an [image] to create a polaroid-style image."
                 },
                 "multiSelect": {
                     "type": "boolean",
+                    "description": "Whether this item - as a [question] will have multi select [options].",
                     "default": false
                 }
-            }
+            },
+            "required": [
+                "item"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "question",
+                        "options"
+                    ]
+                },
+                {
+                    "required": [
+                        "question",
+                        "slider"
+                    ]
+                },
+                {
+                    "anyOf": [
+                        {
+                            "required": [
+                                "image"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "text"
+                            ]
+                        }
+                    ],
+                    "not": {
+                        "allOf": [
+                            {
+                                "required": [
+                                    "question"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "options"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "slider"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "answer"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "hint"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
         },
         "wordMatchingItem": {
             "type": "object",
