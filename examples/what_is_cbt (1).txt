@@ -1,0 +1,44 @@
+name: intro_mental_health
+version: 1
+title: Money and Mental Health Basics
+description:
+	In this lesson you will learn about how money and mental health relate to each other
+completionTime: 5
+modules:
+	- module: m1_introduction
+	  title: Money and Mental Health 1
+	  mustValidate: true
+	  questionnaire:
+		- item: head_image
+		  image:  /finiq/mh_intro/xxx.png
+		- item: para_1
+		  text: Did you know that nearly 1.5 million people in England experience both problem debt and mental health issues? Funny to think that there is a link between money problems and mental health, huh? Well, finances and mental health can be a vicious cycle that can feel really hard to escape. 
+		- item: para_2
+		  text: Take a look at this diagram
+		  image: /finiq/mh_intro/mh_money_cycle.png 
+		  text: it’s pretty clear what’s happening here (and probably something most people can relate to). It’s not clear where it starts, whether money worries cause mental health challenges or the other way round, but the two are definitely connected, and they can certainly make each other worse if left un-checked.
+		- item: para_3
+		  text: The good news is you can take control of this cycle by using strategies that will help you to (1) Manage your feelings, (2) Control your thoughts and (3) Take control of your financial decisions. We’ll explore that in the next lesson, but first, here’s a quiz to help you think a bit more about how Money and Mental Health are connected…
+		- item: button_1
+		  question: Ready?
+		  options: [Yes, No]
+	- module: m2_quiz
+	  title: My Money and Mental Health
+	  mustValidate: true
+	  questionnaire: 
+		- item: q1
+		  question: Worrying about money causes mental health problems
+		  options: [True, False]
+		  answer: False
+		  text: False: remember, it is not always clear what causes mental health challenges. Some studies show that mental health difficulties might actually be the cause of financial challenges. It seems to work both ways, and one problem can make the other worse.
+		  image: /finiq/mh_intro/mh_money_cycle.png 
+		- item: q2
+		  question: We can overcome our financial worries using strategies to manage our _______, feelings and actions
+		  options: [Budget, Thoughts, Time, Emails]
+		  answer: Thoughts
+		  text: Thoughts! Our thoughts, feelings and behaviours are part of a cycle, and we can maintain control over our actions (or behaviours) by checking in on our thoughts and noticing how we feel. More on this later! 
+		- item: q3
+		  question: What percentage of adults are thought to have a mental health difficulty at some point in their adult life?
+		  options: [10%, 25%, 45%, 90%]
+		  answer: 45%
+		  text: Alarmingly, research by the Priory Hospital Group suggests that as many as 45% of adults experience a significant mental health difficulty during their adult life. 
