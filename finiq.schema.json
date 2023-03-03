@@ -110,18 +110,11 @@
         "questionPage": {
             "type": "object",
             "required": [
-                "page",
-                "question",
+                "text",
                 "options"
             ],
             "properties": {
-                "page": {
-                    "type": "string",
-                    "description": "The ID of the page. Must be unique in the lesson.",
-                    "minLength": 2,
-                    "maxLength": 32
-                },
-                "question": {
+                "text": {
                     "type": "string",
                     "description": "The question statement that the user will need to answer."
                 },
