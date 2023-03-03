@@ -7,7 +7,7 @@
         "title",
         "description",
         "completionTime",
-        "modules"
+        "pages"
     ],
     "properties": {
         "name": {
@@ -34,101 +34,79 @@
             "description": "Roughly, how many minutes a user is going to take to finish this lesson.",
             "minimum": 0
         },
-        "modules": {
+        "pages": {
             "type": "array",
             "description": "A list of modules - pages, that will make up the lesson.",
             "minItems": 1,
             "items": {
-                "$ref": "#/definitions/module"
+                "$ref": "#/definitions/page"
             }
         }
     },
     "definitions": {
-        "module": {
+        "page": {
             "type": "object",
             "required": [
-                "module",
-                "title",
-                "mustValidate"
+                "page",
+                "title"
             ],
-            "anyOf": [
+            "oneOf": [
                 {
                     "required": [
-                        "questionnaire"
+                        "question"
                     ]
                 },
                 {
                     "required": [
-                        "wordMatching"
-                    ]
-                },
-                {
-                    "required": [
-                        "videoPlayer"
+                        "video"
                     ]
                 }
             ],
             "properties": {
-                "module": {
+                "page": {
                     "type": "string",
-                    "description": "The ID of the module. Must be unique in the lesson.",
                     "minLength": 2,
                     "maxLength": 32
                 },
                 "title": {
-                    "type": "string",
-                    "description": "The title of the module that the user is going to see while progressing through the module."
+                    "type": "string"
                 },
-                "mustValidate": {
-                    "type": "boolean",
-                    "description": "Whether this module must be validated or not. If set to true, then the user won't be able to progress through the modules until they correctly submit the questionnaire or game.",
-                    "default": false
+                "question": {
+                    "$ref": "#/definitions/questionPage"
                 },
-                "questionnaire": {
-                    "type": "array",
-                    "description": "A list of items that will make up a questionnaire or information page. Leave this non-empty to declare this module as a questionnaire page.",
-                    "minItems": 1,
-                    "items": {
-                        "$ref": "#/definitions/questionnaireItem"
-                    }
-                },
-                "wordMatching": {
-                    "type": "array",
-                    "description": "A list of items that will make up a word matching game. Leave this non-empty to declare this module as a word matching game.",
-                    "minItems": 1,
-                    "items": {
-                        "$ref": "#/definitions/wordMatchingItem"
-                    }
-                },
-                "videoPlayer": {
-                    "type": "object",
-                    "description": "The video player object that consists of a path to the video file and optionally subtitles. Leave this non-empty to declare this module as a video.",
-                    "required": [
-                        "video"
-                    ],
-                    "properties": {
-                        "video": {
-                            "type": "string",
-                            "description": "The path to the video file on Good With's cloud storage service."
-                        },
-                        "subtitles": {
-                            "type": "array",
-                            "description": "A list of subtitle objects representing pairs of timestamps and subtitles.",
-                            "items": {
-                                "type": "object",
-                                "description": "A subtitle object exposing a timestamp and the text shown in that moment. Eg. '0:05: this is a sub'"
-                            }
-                        }
-                    }
+                "video": {
+                    "$ref": "#/definitions/videoPage"
                 }
             }
         },
-        "questionnaireItem": {
+        "videoPage": {
             "type": "object",
+            "required": [
+                "path"
+            ],
             "properties": {
-                "item": {
+                "path": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "transcript": {
+                    "type": "object"
+                }
+            }
+        },
+        "questionPage": {
+            "type": "object",
+            "required": [
+                "page",
+                "question",
+                "options"
+            ],
+            "properties": {
+                "page": {
                     "type": "string",
-                    "description": "The ID of the item. Must be unique in the module.",
+                    "description": "The ID of the page. Must be unique in the lesson.",
                     "minLength": 2,
                     "maxLength": 32
                 },
@@ -140,9 +118,10 @@
                     "type": "array",
                     "description": "A list of options that the user can select from. To make this a multi select option list, set [multiSelect] to true."
                 },
-                "slider": {
-                    "type": "array",
-                    "description": "A list of options that the user can select from using a slider."
+                "multiSelect": {
+                    "type": "boolean",
+                    "description": "Whether this item - as a [question] will have multi select [options].",
+                    "default": false
                 },
                 "answer": {
                     "description": "The correct answer of this question. Leave this null if this question does not have a correct answer."
@@ -152,81 +131,28 @@
                     "description": "Correct explanation of this question. Leave this null if this question does not have an explanation."
                 },
                 "image": {
-                    "type": "string",
-                    "description": "Path to the image or gif that will be displayed. Can be combined with a [text] to create a polaroid-style image."
-                },
-                "text": {
-                    "type": "string",
-                    "description": "The text that will be displayed. Can be combined with an [image] to create a polaroid-style image."
-                },
-                "multiSelect": {
-                    "type": "boolean",
-                    "description": "Whether this item - as a [question] will have multi select [options].",
-                    "default": false
+                    "$ref": "#/definitions/imageItem"
                 }
-            },
-            "required": [
-                "item"
-            ],
-            "oneOf": [
-                {
-                    "required": [
-                        "question",
-                        "options"
-                    ]
-                },
-                {
-                    "required": [
-                        "question",
-                        "slider"
-                    ]
-                },
-                {
-                    "anyOf": [
-                        {
-                            "required": [
-                                "image"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "text"
-                            ]
-                        }
-                    ],
-                    "not": {
-                        "allOf": [
-                            {
-                                "required": [
-                                    "question"
-                                ]
-                            },
-                            {
-                                "required": [
-                                    "options"
-                                ]
-                            },
-                            {
-                                "required": [
-                                    "slider"
-                                ]
-                            },
-                            {
-                                "required": [
-                                    "answer"
-                                ]
-                            },
-                            {
-                                "required": [
-                                    "hint"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
+            }
         },
-        "wordMatchingItem": {
+        "imageItem": {
+            "type": "object",
+            "required": [
+                "path"
+            ],
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "Path to the image or gif that will be displayed. Can be combined with a [caption] to create a polaroid-style image."
+                },
+                "caption": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "The text that will be displayed beneath the image to create a polaroid-style image."
+                }
+            }
+        },
+        "sliderItem": {
             "type": "object",
             "required": [
                 "item"
@@ -234,12 +160,18 @@
             "oneOf": [
                 {
                     "required": [
-                        "text"
-                    ]
+                        "options"
+                    ],
+                    "not": {
+                        "required": [
+                            "slices"
+                        ]
+                    }
                 },
                 {
                     "required": [
-                        "image"
+                        "min",
+                        "max"
                     ]
                 }
             ],
@@ -247,14 +179,17 @@
                 "item": {
                     "type": "string"
                 },
-                "match": {
-                    "type": "string"
+                "options": {
+                    "type": "array"
                 },
-                "text": {
-                    "type": "string"
+                "min": {
+                    "type": "number"
                 },
-                "image": {
-                    "type": "string"
+                "max": {
+                    "type": "number"
+                },
+                "slices": {
+                    "type": "integer"
                 }
             }
         }
