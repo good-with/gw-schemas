@@ -53,6 +53,11 @@
             "oneOf": [
                 {
                     "required": [
+                        "info"
+                    ]
+                },
+                {
+                    "required": [
                         "question"
                     ]
                 },
@@ -70,6 +75,12 @@
                 },
                 "title": {
                     "type": "string"
+                },
+                "info": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/infoItem"
+                    }
                 },
                 "question": {
                     "$ref": "#/definitions/questionPage"
@@ -129,6 +140,29 @@
                 "hint": {
                     "type": "string",
                     "description": "Correct explanation of this question. Leave this null if this question does not have an explanation."
+                },
+                "image": {
+                    "$ref": "#/definitions/imageItem"
+                }
+            }
+        },
+        "infoItem": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "required": [
+                        "text"
+                    ]
+                },
+                {
+                    "required": [
+                        "image"
+                    ]
+                }
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
                 },
                 "image": {
                     "$ref": "#/definitions/imageItem"
