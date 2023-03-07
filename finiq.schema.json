@@ -58,12 +58,17 @@
                 },
                 {
                     "required": [
+                        "video"
+                    ]
+                },
+                {
+                    "required": [
                         "question"
                     ]
                 },
                 {
                     "required": [
-                        "video"
+                        "fillBlanks"
                     ]
                 }
             ],
@@ -84,6 +89,9 @@
                 },
                 "question": {
                     "$ref": "#/definitions/questionPage"
+                },
+                "fillBlanks": {
+                    "$ref": "#/definitions/fillBlanksPage"
                 },
                 "video": {
                     "$ref": "#/definitions/videoPage"
@@ -139,6 +147,64 @@
                 }
             }
         },
+        "sliderPage": {
+            "type": "object",
+            "required": [
+                "text",
+                "items"
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/sliderItem"
+                    },
+                    "minItems": 1
+                },
+                "hint": {
+                    "type": "string"
+                },
+                "image": {
+                    "$ref": "#/definitions/imageItem"
+                }
+            }
+        },
+        "fillBlanksPage": {
+            "type": "object",
+            "required": [
+                "text1",
+                "text2",
+                "options"
+            ],
+            "properties": {
+                "text1": {
+                    "type": "string"
+                },
+                "text2": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 5
+                },
+                "answer": {
+                    "type": "string"
+                },
+                "hint": {
+                    "type": "string"
+                },
+                "image": {
+                    "$ref": "#/definitions/imageItem"
+                }
+            }
+        },
         "infoItem": {
             "type": "object",
             "oneOf": [
@@ -182,32 +248,13 @@
         "sliderItem": {
             "type": "object",
             "required": [
-                "item"
-            ],
-            "oneOf": [
-                {
-                    "required": [
-                        "options"
-                    ],
-                    "not": {
-                        "required": [
-                            "slices"
-                        ]
-                    }
-                },
-                {
-                    "required": [
-                        "min",
-                        "max"
-                    ]
-                }
+                "id",
+                "min",
+                "max"
             ],
             "properties": {
-                "item": {
+                "id": {
                     "type": "string"
-                },
-                "options": {
-                    "type": "array"
                 },
                 "min": {
                     "type": "number"
@@ -215,7 +262,7 @@
                 "max": {
                     "type": "number"
                 },
-                "slices": {
+                "divisions": {
                     "type": "integer"
                 }
             }
