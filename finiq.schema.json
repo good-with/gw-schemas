@@ -87,14 +87,20 @@
                         "$ref": "#/definitions/infoItem"
                     }
                 },
+                "video": {
+                    "$ref": "#/definitions/videoPage"
+                },
                 "question": {
                     "$ref": "#/definitions/questionPage"
+                },
+                "slider": {
+                    "$ref": "#/definitions/sliderPage"
                 },
                 "fillBlanks": {
                     "$ref": "#/definitions/fillBlanksPage"
                 },
-                "video": {
-                    "$ref": "#/definitions/videoPage"
+                "wordMatch": {
+                    "$ref": "#/definitions/wordMatchPage"
                 }
             }
         },
@@ -205,6 +211,32 @@
                 }
             }
         },
+        "wordMatchPage": {
+            "type": "object",
+            "required": [
+                "text",
+                "items"
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/wordMatchItem"
+                    },
+                    "minItems": 2,
+                    "maxItems": 7
+                },
+                "order": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "infoItem": {
             "type": "object",
             "oneOf": [
@@ -264,6 +296,21 @@
                 },
                 "divisions": {
                     "type": "integer"
+                }
+            }
+        },
+        "wordMatchItem": {
+            "type": "object",
+            "required": [
+                "word",
+                "match"
+            ],
+            "properties": {
+                "word": {
+                    "type": "string"
+                },
+                "match": {
+                    "type": "string"
                 }
             }
         }
