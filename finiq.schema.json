@@ -68,7 +68,22 @@
                 },
                 {
                     "required": [
+                        "slider"
+                    ]
+                },
+                {
+                    "required": [
                         "fillBlanks"
+                    ]
+                },
+                {
+                    "required": [
+                        "wordMatch"
+                    ]
+                },
+                {
+                    "required": [
+                        "story"
                     ]
                 }
             ],
@@ -101,6 +116,9 @@
                 },
                 "wordMatch": {
                     "$ref": "#/definitions/wordMatchPage"
+                },
+                "story": {
+                    "$ref": "#/definitions/storyPage"
                 }
             }
         },
@@ -233,6 +251,69 @@
                     "type": "array",
                     "items": {
                         "type": "string"
+                    }
+                }
+            }
+        },
+        "storyPage": {
+            "type": "object",
+            "required": [
+                "character",
+                "intro",
+                "endings",
+                "scenes"
+            ],
+            "properties": {
+                "character": {
+                    "type": "string"
+                },
+                "intro": {
+                    "type": "string"
+                },
+                "endings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "scenes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/storyScene"
+                    },
+                    "minItems": 2
+                }
+            }
+        },
+        "storyScene": {
+            "type": "object",
+            "required": [
+                "scene",
+                "text"
+            ],
+            "properties": {
+                "scene": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "object"
+                },
+                "stats": {
+                    "type": "object",
+                    "properties": {
+                        "health": {
+                            "type": "number"
+                        },
+                        "money": {
+                            "type": "number"
+                        }
                     }
                 }
             }
