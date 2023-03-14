@@ -51,7 +51,7 @@
         "color": {
             "type": "number"
         },
-        "essentialFactor": {
+        "orderFactor": {
             "type": "number",
             "default": 0
         }
