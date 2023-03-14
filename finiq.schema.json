@@ -41,6 +41,19 @@
             "items": {
                 "$ref": "#/definitions/page"
             }
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "color": {
+            "type": "number"
+        },
+        "essentialFactor": {
+            "type": "number",
+            "default": 0
         }
     },
     "definitions": {
@@ -287,7 +300,9 @@
             "type": "object",
             "required": [
                 "scene",
-                "text"
+                "text",
+                "image",
+                "money"
             ],
             "properties": {
                 "scene": {
@@ -299,19 +314,13 @@
                 "image": {
                     "type": "string"
                 },
+                "money": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                },
                 "options": {
                     "type": "object"
-                },
-                "stats": {
-                    "type": "object",
-                    "properties": {
-                        "health": {
-                            "type": "number"
-                        },
-                        "money": {
-                            "type": "number"
-                        }
-                    }
                 }
             }
         },
