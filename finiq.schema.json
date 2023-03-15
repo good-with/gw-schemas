@@ -165,7 +165,10 @@
                 },
                 "options": {
                     "type": "array",
-                    "description": "A list of options that the user can select from. To make this a multi select option list, set [multiSelect] to true."
+                    "description": "A list of options that the user can select from. To make this a multi select option list, set [multiSelect] to true.",
+                    "items": {
+                        "$ref": "#/definitions/optionItem"
+                    }
                 },
                 "multiSelect": {
                     "type": "boolean",
@@ -320,7 +323,25 @@
                     "maximum": 100
                 },
                 "options": {
-                    "type": "object"
+                    "type": "array",
+                    "required": [
+                        "text",
+                        "destination"
+                    ],
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "text": {
+                                "type": "string"
+                            },
+                            "destination": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -361,6 +382,20 @@
                     "type": "string",
                     "maxLength": 50,
                     "description": "The text that will be displayed beneath the image to create a polaroid-style image."
+                }
+            }
+        },
+        "optionItem": {
+            "type": "object",
+            "required": [
+                "text"
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
                 }
             }
         },
