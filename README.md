@@ -15,13 +15,20 @@ Below is a step by step tutorial on how to add these schemas to your **VSCode** 
 ```json
 "yaml.schemas": {
     "https://raw.githubusercontent.com/good-with/gw-schemas/main/finiq.schema.json": "/*.finiq.yaml",
+    "https://raw.githubusercontent.com/good-with/gw-schemas/main/psym.schema.json": "/*.psym.yaml"
 },
 "json.schemas": [
         {
             "fileMatch": [
-                "/*.finiq.yaml"
+                "/*.finiq.json"
             ],
             "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/finiq.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/*.psym.json"
+            ],
+            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/psym.schema.json"
         },
         {
             "fileMatch": [

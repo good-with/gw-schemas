@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "required": [
+        "name",
+        "version",
+        "title",
+        "description",
+        "completionTime"
+    ],
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "version": {
+            "type": "number"
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "completionTime": {
+            "type": "number"
+        },
+        "pages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/page"
+            }
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "color": {
+            "type": "number"
+        },
+        "orderFactor": {
+            "type": "number"
+        }
+    },
+    "definitions": {
+        "page": {
+            "type": "object",
+            "required": [
+                "page",
+                "title"
+            ],
+            "properties": {
+                "page": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string",
+                    "maxLength": 30
+                },
+                "subtitle": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "button": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/item"
+                    }
+                }
+            }
+        },
+        "item": {
+            "type": "object",
+            "required": [
+                "item"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "text"
+                    ]
+                },
+                {
+                    "required": [
+                        "options"
+                    ]
+                },
+                {
+                    "required": [
+                        "slider"
+                    ]
+                }
+            ],
+            "properties": {
+                "item": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array"
+                },
+                "slider": {
+                    "type": "array"
+                }
+            }
+        }
+    }
+}
