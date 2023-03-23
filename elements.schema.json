@@ -46,6 +46,11 @@
                     "required": [
                         "image"
                     ]
+                },
+                {
+                    "required": [
+                        "map"
+                    ]
                 }
             ],
             "properties": {
@@ -54,6 +59,9 @@
                 },
                 "image": {
                     "$ref": "#/definitions/image"
+                },
+                "map": {
+                    "type": "object"
                 }
             }
         },
