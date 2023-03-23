@@ -98,6 +98,11 @@
                     "required": [
                         "story"
                     ]
+                },
+                {
+                    "required": [
+                        "goalSetting"
+                    ]
                 }
             ],
             "properties": {
@@ -132,6 +137,9 @@
                 },
                 "story": {
                     "$ref": "#/definitions/storyPage"
+                },
+                "goalSetting": {
+                    "$ref": "#/definitions/goalSettingPage"
                 }
             }
         },
@@ -342,6 +350,17 @@
                             }
                         }
                     }
+                }
+            }
+        },
+        "goalSettingPage": {
+            "type": "object",
+            "properties": {
+                "forms": {
+                    "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json/definitions/textField"
+                },
+                "summary": {
+                    "type": "string"
                 }
             }
         },

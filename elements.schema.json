@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {
+        "textField": {
+            "type": "object",
+            "required": [
+                "variable",
+                "text"
+            ],
+            "properties": {
+                "variable": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "subtext": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
