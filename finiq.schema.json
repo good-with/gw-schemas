@@ -357,7 +357,7 @@
             "type": "object",
             "properties": {
                 "forms": {
-                    "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json/definitions/textField"
+                    "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#definitions/textField"
                 },
                 "summary": {
                     "type": "string"
