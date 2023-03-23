@@ -2,6 +2,102 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json",
     "definitions": {
+        "dataPoint": {
+            "type": "object",
+            "required": [
+                "title",
+                "value"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                },
+                "color": {
+                    "type": "number"
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "required": [
+                "path"
+            ],
+            "properties": {
+                "path": {
+                    "type": "string"
+                },
+                "caption": {
+                    "type": "string"
+                }
+            }
+        },
+        "info": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "required": [
+                        "text"
+                    ]
+                },
+                {
+                    "required": [
+                        "image"
+                    ]
+                }
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "image": {
+                    "$ref": "#/definitions/image"
+                }
+            }
+        },
+        "pieChart": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dataPoint"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "slider": {
+            "type": "object",
+            "required": [
+                "min",
+                "max"
+            ],
+            "properties": {
+                "min": {
+                    "type": "number"
+                },
+                "max": {
+                    "type": "number"
+                },
+                "divisions": {
+                    "type": "number"
+                },
+                "variable": {
+                    "type": "string"
+                }
+            }
+        },
         "textField": {
             "type": "object",
             "required": [
@@ -16,6 +112,35 @@
                     "type": "string"
                 },
                 "subtext": {
+                    "type": "string"
+                }
+            }
+        },
+        "tile": {
+            "type": "object",
+            "required": [
+                "text"
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "wordPair": {
+            "type": "object",
+            "required": [
+                "word",
+                "match"
+            ],
+            "properties": {
+                "word": {
+                    "type": "string"
+                },
+                "match": {
                     "type": "string"
                 }
             }

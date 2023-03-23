@@ -34,14 +34,6 @@
             "description": "Roughly, how many minutes a user is going to take to finish this lesson.",
             "minimum": 0
         },
-        "pages": {
-            "type": "array",
-            "description": "A list of modules - pages, that will make up the lesson.",
-            "minItems": 1,
-            "items": {
-                "$ref": "#/definitions/page"
-            }
-        },
         "tags": {
             "type": "array",
             "items": {
@@ -54,6 +46,14 @@
         "orderFactor": {
             "type": "number",
             "default": 0
+        },
+        "pages": {
+            "type": "array",
+            "description": "A list of modules - pages, that will make up the lesson.",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/definitions/page"
+            }
         }
     },
     "definitions": {
@@ -117,7 +117,7 @@
                 "info": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/infoItem"
+                        "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#definitions/info"
                     }
                 },
                 "video": {
@@ -175,7 +175,7 @@
                     "type": "array",
                     "description": "A list of options that the user can select from. To make this a multi select option list, set [multiSelect] to true.",
                     "items": {
-                        "$ref": "#/definitions/optionItem"
+                        "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/tile"
                     }
                 },
                 "multiSelect": {
@@ -191,7 +191,7 @@
                     "description": "Correct explanation of this question. Leave this null if this question does not have an explanation."
                 },
                 "image": {
-                    "$ref": "#/definitions/imageItem"
+                    "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/image"
                 }
             }
         },
@@ -208,7 +208,7 @@
                 "items": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/sliderItem"
+                        "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/slider"
                     },
                     "minItems": 1
                 },
@@ -216,7 +216,7 @@
                     "type": "string"
                 },
                 "image": {
-                    "$ref": "#/definitions/imageItem"
+                    "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/image"
                 }
             }
         },
@@ -246,7 +246,7 @@
                     "type": "string"
                 },
                 "image": {
-                    "$ref": "#/definitions/imageItem"
+                    "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/image"
                 }
             }
         },
@@ -263,7 +263,7 @@
                 "items": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/wordMatchItem"
+                        "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/wordPair"
                     },
                     "minItems": 2,
                     "maxItems": 7
@@ -363,97 +363,6 @@
                     }
                 },
                 "summary": {
-                    "type": "string"
-                }
-            }
-        },
-        "infoItem": {
-            "type": "object",
-            "oneOf": [
-                {
-                    "required": [
-                        "text"
-                    ]
-                },
-                {
-                    "required": [
-                        "image"
-                    ]
-                }
-            ],
-            "properties": {
-                "text": {
-                    "type": "string"
-                },
-                "image": {
-                    "$ref": "#/definitions/imageItem"
-                }
-            }
-        },
-        "imageItem": {
-            "type": "object",
-            "required": [
-                "path"
-            ],
-            "properties": {
-                "path": {
-                    "type": "string",
-                    "description": "Path to the image or gif that will be displayed. Can be combined with a [caption] to create a polaroid-style image."
-                },
-                "caption": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "description": "The text that will be displayed beneath the image to create a polaroid-style image."
-                }
-            }
-        },
-        "optionItem": {
-            "type": "object",
-            "required": [
-                "text"
-            ],
-            "properties": {
-                "text": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                }
-            }
-        },
-        "sliderItem": {
-            "type": "object",
-            "required": [
-                "id",
-                "min",
-                "max"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "min": {
-                    "type": "number"
-                },
-                "max": {
-                    "type": "number"
-                },
-                "divisions": {
-                    "type": "integer"
-                }
-            }
-        },
-        "wordMatchItem": {
-            "type": "object",
-            "required": [
-                "word",
-                "match"
-            ],
-            "properties": {
-                "word": {
-                    "type": "string"
-                },
-                "match": {
                     "type": "string"
                 }
             }
