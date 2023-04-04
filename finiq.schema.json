@@ -326,8 +326,7 @@
                     "type": "string"
                 },
                 "money": {
-                    "type": "number",
-                    "minimum": 0
+                    "type": "number"
                 },
                 "options": {
                     "type": "array",
