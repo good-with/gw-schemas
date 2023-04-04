@@ -327,8 +327,7 @@
                 },
                 "money": {
                     "type": "number",
-                    "minimum": 0,
-                    "maximum": 100
+                    "minimum": 0
                 },
                 "options": {
                     "type": "array",
