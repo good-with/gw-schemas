@@ -312,7 +312,6 @@
             "required": [
                 "scene",
                 "text",
-                "image",
                 "money"
             ],
             "properties": {
@@ -322,11 +321,11 @@
                 "text": {
                     "type": "string"
                 },
-                "image": {
-                    "type": "string"
-                },
                 "money": {
                     "type": "number"
+                },
+                "image": {
+                    "type": "string"
                 },
                 "options": {
                     "type": "array",
