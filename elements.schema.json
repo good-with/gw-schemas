@@ -88,10 +88,14 @@
         "slider": {
             "type": "object",
             "required": [
+                "variable",
                 "min",
                 "max"
             ],
             "properties": {
+                "variable": {
+                    "type": "string"
+                },
                 "min": {
                     "type": "number"
                 },
@@ -102,9 +106,6 @@
                     "type": "number"
                 },
                 "label": {
-                    "type": "string"
-                },
-                "variable": {
                     "type": "string"
                 }
             }
