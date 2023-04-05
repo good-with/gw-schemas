@@ -101,6 +101,9 @@
                 "divisions": {
                     "type": "number"
                 },
+                "label": {
+                    "type": "string"
+                },
                 "variable": {
                     "type": "string"
                 }
