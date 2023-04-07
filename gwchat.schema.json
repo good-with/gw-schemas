@@ -1,0 +1,167 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "required": [
+        "name",
+        "version",
+        "title",
+        "description",
+        "startFlow"
+    ],
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "version": {
+            "type": "number"
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "startFlow": {
+            "$ref": "#/definitions/chatFlow"
+        },
+        "flows": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/chatFlow"
+            }
+        }
+    },
+    "definitions": {
+        "chatFlow": {
+            "type": "object",
+            "required": [
+                "flow",
+                "startMessage"
+            ],
+            "properties": {
+                "flow": {
+                    "type": "string"
+                },
+                "startMessage": {
+                    "$ref": "#/definitions/chatMessage"
+                },
+                "messages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/chatMessage"
+                    }
+                }
+            }
+        },
+        "chatMessage": {
+            "type": "object",
+            "required": [
+                "message",
+                "elements"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "elements": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/chatMessageElement"
+                    },
+                    "minItems": 1
+                },
+                "endChat": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "chatMessageElement": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "required": [
+                        "text"
+                    ]
+                },
+                {
+                    "required": [
+                        "image"
+                    ]
+                },
+                {
+                    "required": [
+                        "button"
+                    ]
+                },
+                {
+                    "required": [
+                        "selectables"
+                    ]
+                }
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "button": {
+                    "type": "object",
+                    "required": [
+                        "label"
+                    ],
+                    "properties": {
+                        "label": {
+                            "type": "string"
+                        },
+                        "link": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "selectables": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "option"
+                        ],
+                        "oneOf": [
+                            {
+                                "required": [
+                                    "targetMessage"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "targetFlow"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "targetChat"
+                                ]
+                            }
+                        ],
+                        "properties": {
+                            "option": {
+                                "type": "string"
+                            },
+                            "targetMessage": {
+                                "type": "string"
+                            },
+                            "targetFlow": {
+                                "type": "string"
+                            },
+                            "targetChat": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "minItems": 1
+                }
+            }
+        }
+    }
+}
