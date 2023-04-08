@@ -80,31 +80,17 @@
             "required": [
                 "item"
             ],
-            "oneOf": [
+            "anyOf": [
                 {
                     "required": [
                         "text"
                     ]
                 },
                 {
-                    "anyOf": [
-                        {
-                            "required": [
-                                "text"
-                            ]
-                        },
+                    "oneOf": [
                         {
                             "required": [
                                 "options"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "anyOf": [
-                        {
-                            "required": [
-                                "text"
                             ]
                         },
                         {
