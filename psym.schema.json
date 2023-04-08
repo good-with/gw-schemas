@@ -87,13 +87,31 @@
                     ]
                 },
                 {
-                    "required": [
-                        "options"
+                    "anyOf": [
+                        {
+                            "required": [
+                                "text"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "options"
+                            ]
+                        }
                     ]
                 },
                 {
-                    "required": [
-                        "slider"
+                    "anyOf": [
+                        {
+                            "required": [
+                                "text"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "slider"
+                            ]
+                        }
                     ]
                 }
             ],
