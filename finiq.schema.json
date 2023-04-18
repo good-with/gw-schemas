@@ -135,6 +135,9 @@
                 "wordMatch": {
                     "$ref": "#/definitions/wordMatchPage"
                 },
+                "wordOrder": {
+                    "$ref": "#/definitions/wordOrderPage"
+                },
                 "story": {
                     "$ref": "#/definitions/storyPage"
                 },
@@ -265,6 +268,32 @@
                     "items": {
                         "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/wordPair"
                     },
+                    "minItems": 2,
+                    "maxItems": 7
+                },
+                "order": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "wordOrderPage": {
+            "type": "object",
+            "required": [
+                "text",
+                "items"
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                     "minItems": 2,
                     "maxItems": 7
                 },
