@@ -3,163 +3,154 @@
     "type": "object",
     "required": [
         "name",
-        "version",
         "title",
         "description",
-        "startFlow"
+        "start",
+        "endings",
+        "flow"
     ],
     "properties": {
         "name": {
+            "description": "Unique identifier of the chat.",
             "type": "string"
         },
-        "version": {
-            "type": "number"
-        },
         "title": {
+            "description": "Title of the chat displayed on the screen.",
             "type": "string"
         },
         "description": {
+            "description": "Short description of the chat.",
             "type": "string"
         },
-        "startFlow": {
-            "$ref": "#/definitions/chatFlow"
+        "start": {
+            "description": "The ID of the message that this chat will start with.",
+            "type": "string"
         },
-        "flows": {
+        "endings": {
+            "description": "A list of IDs of the messages that represent the ending of the chat.",
             "type": "array",
             "items": {
-                "$ref": "#/definitions/chatFlow"
-            }
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "flow": {
+            "description": "A list of messages that make up this chat.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/structuredChatMessage"
+            },
+            "minItems": 2
         }
     },
     "definitions": {
-        "chatFlow": {
+        "structuredChatMessage": {
             "type": "object",
             "required": [
-                "flow",
-                "startMessage"
+                "message"
             ],
-            "properties": {
-                "flow": {
-                    "type": "string"
-                },
-                "startMessage": {
-                    "$ref": "#/definitions/chatMessage"
-                },
-                "messages": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/chatMessage"
-                    }
-                }
-            }
-        },
-        "chatMessage": {
-            "type": "object",
-            "required": [
-                "message",
-                "elements"
-            ],
-            "properties": {
-                "message": {
-                    "type": "string"
-                },
-                "elements": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/chatMessageElement"
-                    },
-                    "minItems": 1
-                },
-                "endChat": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "chatMessageElement": {
-            "type": "object",
             "oneOf": [
                 {
                     "required": [
-                        "text"
+                        "options"
                     ]
                 },
                 {
                     "required": [
-                        "image"
-                    ]
-                },
-                {
-                    "required": [
-                        "button"
-                    ]
-                },
-                {
-                    "required": [
-                        "selectables"
+                        "target"
+                    ],
+                    "oneOf": [
+                        {
+                            "required": [
+                                "text"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "image"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "button"
+                            ]
+                        }
                     ]
                 }
             ],
             "properties": {
-                "text": {
+                "message": {
+                    "description": "The unique identifier of the message. Eg. `message_intro_1`.",
                     "type": "string"
                 },
+                "owner": {
+                    "description": "Whether this message is owned by the bot or user.",
+                    "type": "string",
+                    "enum": [
+                        "user",
+                        "bot"
+                    ],
+                    "default": [
+                        "bot"
+                    ]
+                },
+                "target": {
+                    "description": "The unique identifier of the message that will be immediately shown next. Required only for messages with no options.",
+                    "type": "string"
+                },
+                "text": {
+                    "description": "The text of this text message.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "image": {
+                    "description": "Image file name of this image message.",
                     "type": "string"
                 },
                 "button": {
+                    "description": "As a button message, users will be able to tap on the button to navigate to a certain link.",
                     "type": "object",
                     "required": [
-                        "label"
+                        "label",
+                        "link"
                     ],
                     "properties": {
                         "label": {
+                            "description": "Text of the button.",
                             "type": "string"
                         },
                         "link": {
+                            "description": "Link the button will prompt the user to.",
                             "type": "string"
                         }
                     }
                 },
-                "selectables": {
+                "options": {
+                    "description": "A list of selectable objects that allows the user to choose between options.",
                     "type": "array",
                     "items": {
                         "type": "object",
                         "required": [
-                            "option"
-                        ],
-                        "oneOf": [
-                            {
-                                "required": [
-                                    "targetMessage"
-                                ]
-                            },
-                            {
-                                "required": [
-                                    "targetFlow"
-                                ]
-                            },
-                            {
-                                "required": [
-                                    "targetChat"
-                                ]
-                            }
+                            "option",
+                            "target"
                         ],
                         "properties": {
                             "option": {
+                                "description": "The text of the selectable button.",
                                 "type": "string"
                             },
-                            "targetMessage": {
+                            "target": {
+                                "description": "Identifier of the message being triggered by this option.",
                                 "type": "string"
                             },
-                            "targetFlow": {
-                                "type": "string"
-                            },
-                            "targetChat": {
-                                "type": "string"
+                            "selected": {
+                                "description": "Whether this option has been selected or not. Only used to keep track of user selections through the application.",
+                                "type": "boolean"
                             }
                         }
-                    },
-                    "minItems": 1
+                    }
                 }
             }
         }
