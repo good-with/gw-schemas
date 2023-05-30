@@ -41,6 +41,9 @@
         },
         "orderFactor": {
             "type": "number"
+        },
+        "scoreExplanation": {
+            "type": "string"
         }
     },
     "definitions": {
@@ -97,6 +100,16 @@
                             "required": [
                                 "slider"
                             ]
+                        },
+                        {
+                            "required": [
+                                "multiSelect"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "boolean"
+                            ]
                         }
                     ]
                 }
@@ -111,8 +124,14 @@
                 "options": {
                     "type": "array"
                 },
+                "multiSelect": {
+                    "type": "array"
+                },
                 "slider": {
                     "type": "array"
+                },
+                "boolean": {
+                    "type": "boolean"
                 }
             }
         }
