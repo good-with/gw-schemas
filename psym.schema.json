@@ -44,6 +44,9 @@
         },
         "scoreExplanation": {
             "type": "string"
+        },
+        "scoring" : {
+            "type": "array"
         }
     },
     "definitions": {
@@ -110,6 +113,11 @@
                             "required": [
                                 "boolean"
                             ]
+                        },
+                        {
+                            "required": [
+                                "freeText"
+                            ]
                         }
                     ]
                 }
@@ -132,6 +140,27 @@
                 },
                 "boolean": {
                     "type": "boolean"
+                },
+                "freeText": {
+                    "type": "string"
+                },
+                "optional" : {
+                    "type": "boolean"
+                }
+            }
+        },
+        "scoring": {
+            "type": "object",
+            "required": [
+                "grouping",
+                "text"
+            ],
+            "properties": {
+                "grouping": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
                 }
             }
         }
