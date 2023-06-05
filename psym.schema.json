@@ -157,7 +157,10 @@
             ],
             "properties": {
                 "grouping": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "text": {
                     "type": "string"
