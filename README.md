@@ -16,9 +16,16 @@ Below is a step by step tutorial on how to add these schemas to your **VSCode** 
 "yaml.schemas": {
     "https://raw.githubusercontent.com/good-with/gw-schemas/main/finiq.schema.json": "/*.finiq.yaml",
     "https://raw.githubusercontent.com/good-with/gw-schemas/main/psym.schema.json": "/*.psym.yaml",
-    "https://raw.githubusercontent.com/good-with/gw-schemas/main/gwchat.schema.json": "/*.gwchat.yaml"
+    "https://raw.githubusercontent.com/good-with/gw-schemas/main/gwchat.schema.json": "/*.gwchat.yaml",
+    "https://raw.githubusercontent.com/good-with/gw-schemas/main/dictionary.schema.json": "/dictionary.yaml",
 },
 "json.schemas": [
+        {
+            "fileMatch": [
+                "/dictionary.json"
+            ],
+            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/dictionary.schema.json"
+        },
         {
             "fileMatch": [
                 "/*.gwchat.json"
