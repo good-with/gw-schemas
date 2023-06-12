@@ -2,7 +2,10 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json",
     "required": [
-        "name"
+        "name",
+        "title",
+        "body",
+        "type"
     ],
     "properties": {
         "name": {
