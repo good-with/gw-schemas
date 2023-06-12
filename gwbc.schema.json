@@ -1,0 +1,95 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json",
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Required. Unique ID of the broadcast template used internally."
+        },
+        "title": {
+            "type": "string",
+            "description": "Required. The title of the notification. This will also be used as the subject if the notification is an email."
+        },
+        "body": {
+            "type": "array",
+            "description": "Required. The body of the notification represented as a mix of custom-made elements. An element can be a text, image or button.",
+            "items": {
+                "$ref": "#/definitions/broadcastBodyElement"
+            },
+            "minItems": 1
+        },
+        "type": {
+            "type": "string",
+            "description": "Required. The type of notification. If [visible] is true, it will also be shown in the notification dashboard.",
+            "enum": [
+                "inapp",
+                "popup",
+                "push",
+                "email"
+            ]
+        },
+        "visible": {
+            "type": "boolean",
+            "description": "Whether this notification is visible in the user's notification dashboard. Defaults to `true`.",
+            "default": true
+        },
+        "highPriority": {
+            "type": "boolean",
+            "description": "Whether this message is high priority or not. Use this flag only in cases of very important messages such as suspicious activity or security breaches. Defaults to `false`.",
+            "default": false
+        },
+        "ttl": {
+            "type": "number",
+            "description": "Time to live. How many days this will be visible in the notification dashboard before it expires. Not applicable if [visible] is false. If set to null or 0, it will be indefinite. Defaults to 30 days.",
+            "default": 30,
+            "maximum": 365
+        }
+    },
+    "definitions": {
+        "broadcastBodyElement": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "required": [
+                        "text"
+                    ]
+                },
+                {
+                    "required": [
+                        "internalMedia"
+                    ]
+                },
+                {
+                    "required": [
+                        "externalMedia"
+                    ]
+                },
+                {
+                    "required": [
+                        "linkButton"
+                    ]
+                }
+            ],
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "As a text element, this will display a simple text body."
+                },
+                "internalMedia": {
+                    "type": "string",
+                    "description": "As a media element, this will point to an internal media file situated on the current server. eg. `smile.png`."
+                },
+                "externalMedia": {
+                    "type": "string",
+                    "description": "As a media element, this will point to an external media file situated on an external server. eg. `https://giphy.com/gifs/wwe-wrestling-l0HUg6Ypas42ubkXu`."
+                },
+                "linkButton": {
+                    "$ref": "https://raw.githubusercontent.com/good-with/gw-schemas/main/elements.schema.json#/definitions/wordPair"
+                }
+            }
+        }
+    }
+}
