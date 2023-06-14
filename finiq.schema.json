@@ -96,6 +96,11 @@
                 },
                 {
                     "required": [
+                        "wordOrder"
+                    ]
+                },
+                {
+                    "required": [
                         "story"
                     ]
                 },
