@@ -19,39 +19,8 @@ Below is a step by step tutorial on how to add these schemas to your **VSCode** 
     "https://raw.githubusercontent.com/good-with/gw-schemas/main/gwchat.schema.json": "/*.gwchat.yaml",
     "https://raw.githubusercontent.com/good-with/gw-schemas/main/gwbc.schema.json": "/*.gwbc.yaml",
     "https://raw.githubusercontent.com/good-with/gw-schemas/main/dictionary.schema.json": "/dictionary.yaml",
+    "https://raw.githubusercontent.com/good-with/gw-schemas/main/broadcasts.schema.json": "/broadcasts.yaml",
 },
-"json.schemas": [
-        {
-            "fileMatch": [
-                "/dictionary.json"
-            ],
-            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/dictionary.schema.json"
-        },
-        {
-            "fileMatch": [
-                "/*.gwchat.json"
-            ],
-            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/gwchat.schema.json"
-        },
-        {
-            "fileMatch": [
-                "/*.gwbc.json"
-            ],
-            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/gwbc.schema.json"
-        },
-        {
-            "fileMatch": [
-                "/*.finiq.json"
-            ],
-            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/finiq.schema.json"
-        },
-        {
-            "fileMatch": [
-                "/*.psym.json"
-            ],
-            "url": "https://raw.githubusercontent.com/good-with/gw-schemas/main/psym.schema.json"
-        }
-    ],
 ```
 
 5. Make sure you have the correct schema selected when editing a file (see bottom right of screen - it should NOT say **No JSON Schema)
