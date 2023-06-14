@@ -262,7 +262,8 @@
             "type": "object",
             "required": [
                 "text",
-                "items"
+                "items",
+                "order"
             ],
             "properties": {
                 "text": {
