@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "minItems": 1,
+    "items": {
+        "type": "object",
+        "properties": {
+            "video": {
+                "type": "string",
+                "description": "Optional. Name of the video file in the media folder. Eg. `tax.mp4`."
+            }
+        }
+    }
+}
